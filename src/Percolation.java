@@ -64,7 +64,7 @@ public class Percolation {
      *            column index (1-based)
      */
     public void open(int i, int j) {
-    	boolean localBottomed = false;
+        boolean localBottomed = false;
         int id = xyToId(i, j);
         
         if (open[id]) {
@@ -75,8 +75,8 @@ public class Percolation {
         int root = wqu.find(id);
         if (i == N) {
             // wqu.union(virtualBottomId, id);
-        	bottomed[root] = true;
-        	localBottomed = true;
+            bottomed[root] = true;
+            localBottomed = true;
         }
         
         int idx = -1;
@@ -88,7 +88,7 @@ public class Percolation {
             }
         } catch (IndexOutOfBoundsException ioobe) {
             // expected
-        	idx = -1;
+            idx = -1;
         }
         try {
             idx = xyToId(i, j + 1);
@@ -98,27 +98,27 @@ public class Percolation {
             }
         } catch (IndexOutOfBoundsException ioobe) {
             // expected
-        	idx = -1;
+            idx = -1;
         }
         try {
             idx = xyToId(i - 1, j);
             if (open[idx]) {
-            	localBottomed |= bottomed[wqu.find(idx)];
+                localBottomed |= bottomed[wqu.find(idx)];
                 wqu.union(id, idx);
             }
         } catch (IndexOutOfBoundsException ioobe) {
             // expected
-        	idx = -1;
+            idx = -1;
         }
         try {
             idx = xyToId(i + 1, j);
             if (open[idx]) {
-            	localBottomed |= bottomed[wqu.find(idx)];
+                localBottomed |= bottomed[wqu.find(idx)];
                 wqu.union(id, idx);
             }
         } catch (IndexOutOfBoundsException ioobe) {
             // expected
-        	idx = -1;
+            idx = -1;
         }
         
         if (localBottomed) {
@@ -169,7 +169,7 @@ public class Percolation {
      */
     public boolean percolates() {
         // return wqu.connected(virtualTopId, virtualBottomId);
-    	return bottomed[wqu.find(virtualTopId)];
+        return bottomed[wqu.find(virtualTopId)];
     }
 
     /**
